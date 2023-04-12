@@ -1,2 +1,2 @@
-# Solved.C-
+# Solved.C#
 C# Algorithm Study
