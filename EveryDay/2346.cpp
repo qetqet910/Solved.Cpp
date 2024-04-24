@@ -5,17 +5,20 @@
 using namespace std;
 
 int n;
-deque<pair<int, int>> dq;
+deque<pair<int, int>> dq; 
+// utility pair로 deque 묶어서 생성
 
 int main() {
 	ios::sync_with_stdio(0);
 	cin.tie(0);
+    // 시간 단축
 
 	cin >> n;
 	for (int i = 0; i < n;i++) {
 		int tmp;
 		cin >> tmp;
 		dq.push_back(make_pair(tmp, i+1));
+        // dq 뒷자리에 페어 만들어서 ()잠시대기
 	}
 
 	while (true) {
