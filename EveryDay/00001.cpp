@@ -1,3 +1,4 @@
+//2292
 #include <iostream>
 #include <vector>
 #include <algorithm>
@@ -13,7 +14,7 @@ int main(){
     for(int sum=2; sum <= number; i++) sum += 6*i;
     cout << i;
 }
-
+//2869
 #include <iostream>
 
 using namespace std;
@@ -33,7 +34,7 @@ int main(){
     else
         cout << day;
 }
-
+//2775
 #include <iostream>
 #include <vector>
 
