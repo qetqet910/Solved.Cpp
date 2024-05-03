@@ -207,3 +207,21 @@ using namespace std;
     큐와 스택을 사용하여 BFS, DFS는 아직 무리가 있는 모습이다
     
 */ 
+// 1012
+// x or y 하나만 이어져 있더라 하더라고 인접한 배추임
+int main(){
+    int testCase;
+    cin >> testCase;
+    
+    for(int p = 0; p < testCase; p++){
+        int M, N, K;
+        cin >> M >> N >> K;
+        // x, y에 대해 각각의 변수들이 필요함 Pair를 쓸 줄 안다면 좀 낫겠지만.. 모름.
+        // https://blog.naver.com/jidon333/60211838689 그래서 pair 공부 후 풀기로 함
+        // 밥 먹고 ㄱㄱ
+        vector<int> graph[K + 1][K + 1];
+        for(int i = 0; i < K, i++){
+            
+        }
+    }
+}
