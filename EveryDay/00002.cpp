@@ -208,163 +208,174 @@ using namespace std;
 // x or y 하나만 이어져 있더라 하더라도 인접한 배추임
 // x, y에 대해 각각의 변수들이 필요함 Pair를 쓸 줄 안다면 좀 낫겠지만.. 모름.
 // https://blog.naver.com/jidon333/60211838689 그래서 pair 공부 후 풀기로 함
-int res = 0;
+// int res = 0;
 
-void dfs(int start1, int start2, vector<pair<int, int>> graph[], bool check[][]){
-    check[start1][start2] = true;
-    for(int i = 0; i < graph[start1 > start2 ? start1 : start2].size(); i++){
-        if(check[graph[start][i].first][graph[start][i].second] == false){
-            if(graph[start][i].first >= start + 2) res++;
-            dfs(graph[start][i].first, graph, check);
-        }else if(check[graph[start][i].second] == false){
-            if(graph[start][i].second >= start + 2) res++;
-            dfs(graph[start][i].second, graph, check);
-        }
-    }
-}
+// void dfs(int start1, int start2, vector<pair<int, int>> graph[], bool check[][]){
+//     check[start1][start2] = true;
+//     for(int i = 0; i < graph[start1 > start2 ? start1 : start2].size(); i++){
+//         if(check[graph[start][i].first][graph[start][i].second] == false){
+//             if(graph[start][i].first >= start + 2) res++;
+//             dfs(graph[start][i].first, graph, check);
+//         }else if(check[graph[start][i].second] == false){
+//             if(graph[start][i].second >= start + 2) res++;
+//             dfs(graph[start][i].second, graph, check);
+//         }
+//     }
+// }
 
-int main(){
-    int testCase;
-    // cin >> testCase;
-    pair<int, int> p;
+// int main(){
+//     int testCase;
+//     // cin >> testCase;
+//     pair<int, int> p;
     
-    // for(int j = 0; j < testCase; j++){
-    int M, N, K, start1 = -1, start2 = -1;
+//     // for(int j = 0; j < testCase; j++){
+//     int M, N, K, start1 = -1, start2 = -1;
     
-    cin >> M >> N >> K;
-    vector<pair<int, int>> graph[K];
-    bool check[K][K];
-    fill(check[0][0], check[check+K+1][check+K+1], false);
+//     cin >> M >> N >> K;
+//     vector<pair<int, int>> graph[K];
+//     bool check[K][K];
+//     fill(check[0][0], check[check+K+1][check+K+1], false);
     
-    for(int i = 0; i < K; i++){
-        int a, b;
-        cin >> a >> b;
-        p = {a, b};
-        graph[a].push_back(p);
-        graph[b].push_back(p);
-        if(start1 == -1 && start2 == -1) start1 = a; start2 = b;
-    }
+//     for(int i = 0; i < K; i++){
+//         int a, b;
+//         cin >> a >> b;
+//         p = {a, b};
+//         graph[a].push_back(p);
+//         graph[b].push_back(p);
+//         if(start1 == -1 && start2 == -1) start1 = a; start2 = b;
+//     }
     
-    for(int i = 0; i < K; i++) sort(graph[i].begin(), graph[i].end());
+//     for(int i = 0; i < K; i++) sort(graph[i].begin(), graph[i].end());
     
-    dfs(start1, start2, graph, check);
-    cout << res << '\n';
-    res = 0;
-    // }
-}
+//     dfs(start1, start2, graph, check);
+//     cout << res << '\n';
+//     res = 0;
+//     // }
+// }
 
-// 포기포기포기포기포기포기포기포기포기포기포기포기포기포기포기포기포기포기포기포기포기
+// // 포기포기포기포기포기포기포기포기포기포기포기포기포기포기포기포기포기포기포기포기포기
 
-#include <iostream>
+// #include <iostream>
 
-using namespace std;
+// using namespace std;
+
+// bool map[50][50]; 
+// // 가로 세로의 최대 길이가 50이니 max값으로 판을 만듦
+
+// void dfs(int row, int col)
+// {
+//     if(row < 0 || row >= 50) return;
+//     if(col < 0 || col >= 50) return;
+//     // 오버플로우 방지   
+//     if(!map[row][col])
+//     {
+//         return;
+//     }
+//     // 이미 검사한 땅이면 리턴
+//     // 검사했다고 표시
+//     map[row][col] = false;
+//     dfs(row + 1, col); // 상
+//     dfs(row - 1, col); // 하
+//     dfs(row, col - 1); // 좌
+//     dfs(row, col + 1); // 우
+//     // 상하좌우로 탐색하여 주변 배추들 찾기
+//     // 찾으면 방문처리를 하여 다음 dfs에서 넘어갈 수 있게 함
+//     // = number를 안 올릴 수 있게 - 한 뭉테기로 처리할 수 있게
+// }
+
+// int main(void)
+// {
+//     cin.tie(0);
+//     cout.tie(0);
+//     ios_base::sync_with_stdio(0);
+//     // 시간 최적화
+//     int tc;
+//     cin >> tc;
+//     // 테스트 케이스 입력 받고
+//     for(int t = 0 ; t < tc ; t++)
+//     {
+//         int m, n, k;
+//         cin >> m >> n >> k;
+//         // 가로 세로 배추가 심어져있는 밭의 개수
+//         for(int i = 0 ; i < k ; i++)
+//         {
+//             int x, y;
+//             cin >> x >> y;
+//             // 배추가 있는 곳은 맵에서 방문처리
+//             map[y][x] = true;
+//         }
+//         int number = 0;
+//         for(int row = 0 ; row < n ; row++)
+//         {
+//             for(int col = 0 ; col < m ; col++)
+//             {
+//                 // 맵의 0,0부터 row,col 까지 전부 탐색하여 true
+//                 // 배추가 있는 곳이면 벌레가 필요하니 넘버 카운트 해주고
+//                 // 주변에 있는 배추 - 노드를 탐색하기 위해 dfs를 돌려줌
+//                 if(map[row][col])
+//                 {
+//                     number++;
+//                     dfs(row, col);
+//                 }
+//             }
+//         }
+
+//         cout << number << '\n';
+//     }
+// }
+
+// 첫번째답안첫번째답안첫번째답안첫번째답안첫번째답안첫번째답안첫번째답안첫번째답안
+// 내일 오자마자 1012번 오답하고 풀이ㄱㄱ
+// pair로 귀찮게 할 필요 없이 2차원 맵 하나로 구현 가능. 실버엔 실버인 이유가 있다
+// 너무 복잡하게 생각하지 말자.
 
 bool map[50][50];
 
-// 돌면서 상하좌우 탐색
-void dfs(int row, int col)
-{
-    // 인덱스 에러 방지
-    if(row < 0 || row >= 50) return;
-    if(col < 0 || col >= 50) return;
+void dfs(int x, int y){
+    if(x >= 50 || y >= 50) return;
+    if(x < 0 || y < 0) return;
+    // 0부터기 때문에 50도 Overflow >=로 비교할것
+
+    if(!map[x][y]) return;
     
-    // 이미 검사했거나 땅이 아닐 경우 제외
-    if(!map[row][col])
-    {
-        return;
-    }
-    // 검사했다고 표시
-    map[row][col] = false;
-    dfs(row + 1, col); // 상
-    dfs(row - 1, col); // 하
-    dfs(row, col - 1); // 좌
-    dfs(row, col + 1); // 우
+    map[x][y] = false;
+    dfs(x + 1, y);
+    dfs(x - 1, y);
+    dfs(x, y + 1);
+    dfs(x, y - 1);
 }
 
-int main(void)
-{
+int main(){
+    int ts;
+    cin >> ts;
     cin.tie(0);
     cout.tie(0);
     ios_base::sync_with_stdio(0);
-
-    int tc;
-    cin >> tc;
-    for(int t = 0 ; t < tc ; t++)
-    {
-        int m, n, k;
-        cin >> m >> n >> k;
+    // 3줄 차이가 4ms나 나농
+    for(int tss = 0; tss < ts; tss++){
+        int M, N, K;
+        cin >> M >> N >> K;
         
-        for(int i = 0 ; i < k ; i++)
-        {
-            int x, y;
-            cin >> x >> y;
-            map[y][x] = true;
+        
+        for(int i = 0; i < K; i++){
+            int N, M;
+            cin >> N >> M;
+            map[M][N] = true;
+            // 가로세로 잘 생각하는 것 당연한 것
         }
-        // 검사하지 않은 땅이 있으면 연결된 땅 모두 검사하는 dfs
-        int number = 0;
-        for(int row = 0 ; row < n ; row++)
-        {
-            for(int col = 0 ; col < m ; col++)
-            {
-                if(map[row][col])
-                {
-                    number++;
-                    dfs(row, col);
+        
+        int num = 0;
+        for(int i = 0; i < N; i++){
+            for(int j = 0 ; j < M; j++){
+                if(map[i][j]){
+                    // Point map[i][j]로 비교하기 따로 false로 채우지 않았기에
+                    // dfs에서 false로 체킹이 가능함
+                    num++;
+                    dfs(i, j);
                 }
             }
         }
-
-        cout << number << '\n';
+        
+        cout << num << '\n';
     }
 }
-
-// 첫번째답안첫번째답안첫번째답안첫번째답안첫번째답안첫번째답안첫번째답안첫번째답안
-
-#include <iostream>
-#include <algorithm>
-using namespace std;
-
-int t, m, n, k, x, y, ans;
-int field[50][50];
-int xpos[4] = {0, 0, -1, 1};
-int ypos[4] = {1, -1, 0, 0};
-
-void dfs(int x, int y) {
-	field[x][y] = 0;
-	for (int i = 0; i < 4; i++) {
-		int xx = x + xpos[i];
-		int yy = y + ypos[i];
-		if (xx < 0 || yy < 0 || xx >= m || yy >= n) continue;
-		if (field[xx][yy] == 1) {
-			dfs(xx, yy);
-		}
-	}
-}
-
-int main() {
-	cin >> t;
-	for (int q = 0; q < t; q++) {
-		cin >> m >> n >> k;
-		for (int i = 0; i < k; i++) {
-			cin >> x >> y;
-			field[x][y] = 1;
-		}
-
-		for (int i = 0; i < m; i++) {
-			for (int j = 0; j < n; j++) {
-				if (field[i][j] == 1) {
-					dfs(i, j);
-					ans++;
-				}
-			}
-		}
-
-		cout << ans << '\n';
-		ans = 0;
-		for (int i = 0; i < m; i++) {
-			fill(field[i], field[i] + n, 0);
-		}
-	}
-}
-// 두번째답안두번째답안두번째답안두번째답안두번째답안두번째답안두번째답안두번째답안
-// 내일 오자마자 1012번 오답하고 풀이ㄱㄱ
