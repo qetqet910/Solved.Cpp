@@ -107,3 +107,73 @@ int main(){
     }
 
 }
+// B번 정답
+#include <iostream>
+#include <algorithm>
+#include <vector>
+#include <queue>
+
+using namespace std;
+
+int main(){
+    cin.tie(0);
+    cout.tie(0);
+    ios_base::sync_with_stdio(0);
+    
+    int N, M, cnt = 1;
+    cin >> N >> M;
+
+    vector<int> Human[M + 1];
+    vector<int> middle;
+    queue<int> q;
+    
+    for(int i = 0; i < M; i++){
+        int H1, H2;
+        cin >> H1 >> H2;
+        Human[i].push_back(H1);
+        Human[i].push_back(H2);
+        middle.push_back(H1);
+        middle.push_back(H2);
+    }
+    sort(middle.begin(), middle.end());
+    for(auto& i : middle){q.push(i);}
+    
+    while(cnt < N){
+        q.push(q.front());
+        q.pop();
+        cnt++;
+    }
+    
+    for(int i = 0; i < M; i++){
+        if(Human[i][0] == q.front() || Human[i][1] == q.front()){
+            cout << i+1;
+            break;
+        }
+    }
+    
+    // if(M * 2 > N){
+    //     for(int i = 0; i < N; i++){
+    //         q.push(q.front());
+    //         q.pop();
+    //     }
+        
+    //     for(int i = 1; i <= M; i++){
+    //         if(Human[i][0] == q.front() || Human[i][1] == q.front()){
+    //             cout << i;
+    //             break;
+    //         }
+    //     }
+    // }else{
+    //     for(int i = M*2; i < N; i++){
+    //         q.push(q.front());
+    //         q.pop();
+    //     }
+        
+    //     for(int i = 1; i <= M; i++){
+    //         if(Human[i][0] == q.front() || Human[i][1] == q.front()){
+    //             cout << i;
+    //             break;
+    //         }
+    //     }
+    // }
+}
