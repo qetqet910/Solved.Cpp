@@ -177,3 +177,53 @@ int main(){
     //     }
     // }
 }
+
+// 31792 실패 (시간초과)
+#include <iostream>
+#include <algorithm>
+#include <vector>
+#include <string>
+
+using namespace std;
+
+int main(){
+    cin.tie(nullptr);
+    ios::sync_with_stdio(false);
+
+    int n;
+    vector<int> v;
+    
+    cin >> n;
+    cin.ignore();
+    
+    for(int i = 0; i < n; i++){
+        string str;
+        int pr = 0;
+        
+        getline(cin, str, '\n');
+        if(str.length() > 1){
+            pr = stoi(str.substr(str.find(' '), str.length()));
+            if(str[0] == '1'){
+                v.push_back(pr);
+            }else if(str[0] == '2'){
+                bool flag = false;
+                for(auto& i : v){if(i == pr) flag = true;}
+                if(flag == true) v.erase(remove(v.begin(), v.end(), pr), v.end());
+            }
+        }else{
+            if(v.size() == 0){
+                cout << 0 << '\n';
+            }else{
+                sort(v.begin(), v.end());
+                int pr = v[0], cnt = 1;
+                for(int i = 0; i < v.size(); i++){
+                    if((pr*2 <= v[i]) && v.size() > 1){
+                        cnt++;
+                        pr = v[i];
+                    }
+                }
+                cout << cnt << '\n';
+            }
+        }
+    }
+}
