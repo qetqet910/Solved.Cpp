@@ -24,3 +24,5 @@ https://www.acmicpc.net/workbook/view/14575 - 브루트포스 문제집 다 풀�
 내 18년 그렇게 살아왔어도 여기서부터 바뀌면 되는 것이다
 
 이 레포는 다이아 찍으면 public으로 바꿀 거임
+
+##### 5/5 Silver1 승급
