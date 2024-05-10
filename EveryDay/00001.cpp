@@ -1,4 +1,4 @@
-//2292
+//2292 
 #include <iostream>
 #include <vector>
 #include <algorithm>
