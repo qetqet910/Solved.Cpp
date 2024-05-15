@@ -156,3 +156,126 @@ int main(){
 
     cout << result - 1;
 }
+
+// 2178
+
+#include <iostream>
+#include <queue>
+#include <utility>
+#define MAX_SIZE 100 + 1
+
+using namespace std;
+
+int n, m, result;
+int map[MAX_SIZE][MAX_SIZE];
+queue<pair<int, int>> q;
+pair<int, int> p;
+
+int dx[4] = {0, 1, 0, -1};
+int dy[4] = {1, 0, -1, 0};
+
+bool chkOverflow(int nx, int ny){
+    return (nx >= 0 && ny >= 0 && nx < n && ny < m);
+}
+
+void bfs(){
+    while(!q.empty()){
+        int x = q.front().first;
+        int y = q.front().second;
+        q.pop();
+        for(int i = 0; i < 4; i++){
+            int nx = x + dx[i];
+            int ny = y + dy[i];
+            if(chkOverflow(nx, ny) == true && map[nx][ny] == 1){
+                map[nx][ny] = map[x][y] + 1;
+                p = make_pair(nx, ny);
+                q.push(p);
+            }
+        }
+    }
+}
+
+int main(){
+    cin >> n >> m; 
+    for (int i=0; i<n; ++i){   
+        string row;                
+        cin >> row;
+        for (int j=0; j<m; ++j){   
+            map[i][j] = row[j]-'0';  
+        }
+    }
+    
+    q.push(make_pair(0, 0));
+    bfs();
+    
+    cout << map[n - 1][m - 1];
+}
+
+//1926
+
+#include <iostream>
+#include <queue>
+#include <utility>
+#include <vector>
+#include <algorithm>
+#define MAX_SIZE 501
+
+using namespace std;
+
+int n, m, result, r = 0;
+int map[MAX_SIZE][MAX_SIZE];
+queue<pair<int, int>> q;
+pair<int, int> p;
+vector<int> res;
+
+int dx[4] = {0, 1, 0, -1};
+int dy[4] = {1, 0, -1, 0};
+
+bool chkOverflow(int nx, int ny){
+    return (nx >= 0 && ny >= 0 && nx < n && ny < m);
+}
+
+void bfs(){
+    while(!q.empty()){
+        int x = q.front().first;
+        int y = q.front().second;
+        q.pop();
+        for(int i = 0; i < 4; i++){
+            int nx = x + dx[i];
+            int ny = y + dy[i];
+            if(chkOverflow(nx, ny) == true && map[nx][ny] == 1){
+                map[nx][ny] = 0;
+                p = make_pair(nx, ny);
+                q.push(p);
+                r++;
+            }
+        }
+    }
+    if(r == 0){res.push_back(1);}
+    else{res.push_back(r);}
+    
+}
+
+int main(){
+    cin >> n >> m; 
+    cin.ignore();
+    for(int i = 0; i < n; ++i){   
+        for(int j = 0; j < m; ++j){   
+            int a = 0; cin >> a; map[i][j] = a;
+        }
+    }
+    
+    for(int i = 0; i < n; ++i){
+        for(int j = 0; j < m; ++j){
+            if(map[i][j] == 1){
+                result++;
+                q.push(make_pair(i, j));
+                bfs();
+                r = 0;
+            }
+        }
+    }
+    
+    sort(res.begin(), res.end());
+    cout << result << '\n' << res[res.size() - 1];
+}
