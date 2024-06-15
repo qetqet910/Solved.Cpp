@@ -39,6 +39,8 @@ int main(){
     return 0;
 }
 
+// 16493
+
 #include<iostream>
 #include <cmath>
 
@@ -47,7 +49,7 @@ using namespace std;
 int v[21], w[21], dp[21][201];
 
 int main(){
-    int n, m;
+    int n, m, ans = 0;
     cin >> n >> m;
     
     for(int i = 1; i <= m; i++){
@@ -57,13 +59,14 @@ int main(){
     
     for(int i = 1; i <= n; i++){
         for(int j = 1; j <= m; j++){
-            if(w[j] > i){
-                dp[j][i] = max(dp[j-1][i], dp[j][i]);
-            }else{
+            if(i - w[j] >= 0){
                 dp[j][i] = max(dp[j-1][i - w[j]] + v[j], dp[j-1][i]);
+            }else{
+                dp[j][i] = dp[j-1][i];
             }
+            ans = max(ans, dp[j][i]);
         }
     }
     
-    cout << dp[n][m];
+    cout << ans;
 }
