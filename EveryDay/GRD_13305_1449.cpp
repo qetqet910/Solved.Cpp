@@ -31,3 +31,25 @@ int main(){
     
     cout << result;
 }
+
+// 1449
+
+int t[1001];
+
+int main(){
+    int n, l, start=0, tape=0;
+    cin >> n >> l;
+    for(int i = 0 ; i < n; i++){cin >> t[i];}
+    
+    sort(t, t+n);
+    start = t[0]; tape++;
+    
+    for(int i = 1; i < n ; i++){
+        if(l <= t[i] - start){
+            tape++;
+            start = t[i];
+        }
+    }
+    
+    cout << tape;
+}
