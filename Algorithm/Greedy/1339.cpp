@@ -1,3 +1,5 @@
+// 이건 그냥 자리수 계산해서 높은 순서대로 정렬, 높은 자릿수의 알파벳 순서 * 9 ~ 0 
+
 #include <bits/stdc++.h>
 
 using namespace std;
@@ -37,5 +39,3 @@ int main(void) {
     cout << res << '\n';
 	return 0;
 }
-
-// 내일(금) 이해하고 다시 풀기
