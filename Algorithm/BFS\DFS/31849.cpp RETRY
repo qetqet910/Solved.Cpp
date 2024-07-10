@@ -1,0 +1,90 @@
+#include <iostream>
+#include <vector>
+#include <string>
+#include <queue>
+#include <algorithm>
+#define MAX 1001
+#define INF 1e9
+#define FASTIO cin.tie(0); cout.tie(0); ios::sync_with_stdio(false);
+
+using namespace std;
+struct CONVENIENCE {
+    int C, D;
+};
+
+int N, M, R, C;
+vector<CONVENIENCE> Conveniences;
+int MAP[MAX][MAX];
+bool Visited[MAX][MAX];
+int MoveY[4] = { -1,0,1,0 };
+int MoveX[4] = { 0,-1,0,1 };
+int Answer = INF;
+
+void init() {
+    for (int i = 0; i < MAX; i++) {
+        for (int j = 0; j < MAX; j++) {
+            Visited[i][j] = false;
+        }
+    }
+}
+
+void input() {
+    cin >> N >> M >> R >> C;
+    for (int i = 0; i < R; i++) {
+        int a, b, p;
+        cin >> a >> b >> p;
+        MAP[a][b] = p;
+    }
+    for (int i = 0; i < C; i++) {
+        int c, d;
+        cin >> c >> d;
+        Conveniences.push_back({ c,d });
+    }
+}
+
+void bfs() {
+    queue<pair<pair<int, int>, int> > Q;
+    for (int i = 0; i < C; i++) {
+        int c = Conveniences[i].C;
+        int d = Conveniences[i].D;
+        Q.push(make_pair(make_pair(c, d), 0));
+        Visited[c][d] = true;
+    }
+
+    while (!Q.empty()) {
+        int NowY = Q.front().first.first;
+        int NowX = Q.front().first.second;
+        int NowT = Q.front().second;
+        Q.pop();
+
+        if (MAP[NowY][NowX] > 0) {
+            Answer = min(Answer, NowT * MAP[NowY][NowX]);
+        }
+
+        for (int i = 0; i < 4; i++) {
+            int NextY = NowY + MoveY[i];
+            int NextX = NowX + MoveX[i];
+            if ((NextY > 0) && (NextY <= N) && (NextX > 0) && (NextX <= M) && !Visited[NextY][NextX]) {
+                Q.push(make_pair(make_pair(NextY, NextX), NowT + 1));
+                Visited[NextY][NextX] = true;
+            }
+        }
+    };
+}
+
+void settings() {
+    bfs();
+}
+
+void find_Answer() {
+    cout << Answer << "\n";
+}
+
+int main() {
+    FASTIO
+    input();
+    settings();
+    find_Answer();
+
+    return 0;
+}​
