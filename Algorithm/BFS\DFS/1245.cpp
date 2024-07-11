@@ -15,7 +15,7 @@ void BFS(int x, int y){
     while(!q.empty()){
         int xx = q.front().first;
         int yy = q.front().second;
-        q.pop();
+        q.pop(); 
         
         for(int i = 0; i < 8; i++){
             int nx = xx + dx[i];
