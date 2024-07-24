@@ -1,0 +1,19 @@
+#include <bits/stdc++.h>
+// dp자체가 동적 프로그래밍이고 그 안에 ㅈㄴ많은 알고리즘들이 있음 타일링, LIS 등등드읃읃읃읃으읃으드으
+using namespace std;
+
+int main(){
+    // int n; cin >> n;
+    // vector<int> v;
+    // for(int i = 0; i < n; i++){
+    //     int a; cin >> a; v.push_back(a);
+    // }
+    // sort(v.begin(), v.end());
+    // v.erase(unique(v.begin(), v.end()), v.end());
+    
+    // cout << v.size();
+    
+    https://namu.wiki/w/%EC%B5%9C%EC%9E%A5%20%EC%A6%9D%EA%B0%80%20%EB%B6%80%EB%B6%84%20%EC%88%98%EC%97%B4
+    
+    11053
+}
