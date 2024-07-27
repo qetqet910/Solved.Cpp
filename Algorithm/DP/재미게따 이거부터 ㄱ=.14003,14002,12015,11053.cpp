@@ -98,3 +98,46 @@ int main() {
 
 //     cout << answer << '\n';
 // }
+
+
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main(){
+    int n = 1e6; cin >> n;
+    vector<long long> P;
+    vector<long long> P1;
+    vector<long long> O;
+    vector<long long> res;
+    
+    vector<long long> A;
+    
+    for(int i = 0; i < n; i++){
+        long long num = -1e9; cin >> num;
+        O.emplace_back(num);
+        
+        if(A.empty() || A.back() < num){
+            A.emplace_back(num);
+        }else{
+            auto pos = lower_bound(A.begin(), A.end(), num);
+            *pos = num;
+        }
+        
+        P.push_back(lower_bound(A.begin(), A.end(), num) - A.begin());
+    }
+    
+    for(int i = P.size() - 1; i >= 0; i--){P1.push_back(P[i]);}
+    long long P2 = *max_element(P1.begin(), P1.end());
+    for(int i = 0; i < n; i++){
+        if(P2 < 0){break;}
+        if(P1[i] == P2){P2--; res.emplace_back(O[i]);}
+    }
+    
+    sort(res.begin(), res.end());
+    
+    cout << A.size() << '\n';
+    for(auto& i : res){
+        cout << i << ' ';
+    }
+}
