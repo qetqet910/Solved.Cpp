@@ -99,44 +99,40 @@ int main() {
 //     cout << answer << '\n';
 // }
 
-
 #include <bits/stdc++.h>
 
 using namespace std;
 
-int main(){
-    int n = 1e6; cin >> n;
-    vector<long long> P;
-    vector<long long> P1;
+int main() {
+    long long n; cin >> n;
+    
     vector<long long> O;
+    vector<long long> P;
+    vector<long long> A;
     vector<long long> res;
     
-    vector<long long> A;
-    
     for(int i = 0; i < n; i++){
-        long long num = -1e9; cin >> num;
-        O.emplace_back(num);
+        long long val = -1e9;
+        cin >> val;
         
-        if(A.empty() || A.back() < num){
-            A.emplace_back(num);
+        if(A.empty() || A.back() < val){
+            A.emplace_back(val);
         }else{
-            auto pos = lower_bound(A.begin(), A.end(), num);
-            *pos = num;
+            auto pos = lower_bound(A.begin(), A.end(), val);
+            *pos = val;
         }
         
-        P.push_back(lower_bound(A.begin(), A.end(), num) - A.begin());
+        O.emplace_back(val);
+        P.emplace_back(lower_bound(A.begin(), A.end(), val) - A.begin());
     }
     
-    for(int i = P.size() - 1; i >= 0; i--){P1.push_back(P[i]);}
-    long long P2 = *max_element(P1.begin(), P1.end());
-    for(int i = 0; i < n; i++){
-        if(P2 < 0){break;}
-        if(P1[i] == P2){P2--; res.emplace_back(O[i]);}
+    long long maxV = *max_element(P.begin(), P.end());
+    for(int i = P.size() - 1; i >= 0; i--){
+        if(P[i] == maxV){maxV--; res.emplace_back(O[i]);}
     }
-    
-    sort(res.begin(), res.end());
     
     cout << A.size() << '\n';
+    sort(res.begin(), res.end());
     for(auto& i : res){
         cout << i << ' ';
     }
