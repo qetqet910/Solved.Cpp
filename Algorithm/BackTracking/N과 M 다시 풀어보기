@@ -1,0 +1,41 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int n, m, v[9], a[9];
+bool visited[9];
+set<vector<int>> s; // 중복을 허용하지 않는 이진 트리기반 자동 정렬 노드 집합
+                    // 설명만 들으면 그냥 개사기임 왜 안 쓰고 있었을까 (몰랐음;;)
+
+void dfs(int start){
+    if(start == m){
+        vector<int> ve;
+        for(auto i = 0; i < m; i++){
+            ve.emplace_back(a[i]);
+        }
+        s.insert(ve);
+        ve.clear();
+    }else{
+        for(int i = 0; i < n; i++){
+            if(!visited[i]){
+                visited[i] = true;
+                a[start] = v[i];
+                dfs(start+1);
+                visited[i] = false;
+            }
+        }
+    }
+}
+
+int main(){
+    cin >> n >> m;
+    for(int i = 0; i < n; i++){cin >> v[i];}
+    sort(v, v+n);
+    dfs(0);
+    
+    for(auto vector:s) {
+        for(auto temp:vector)
+            cout << temp << " ";
+        cout << "\n";
+    }
+}
